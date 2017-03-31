@@ -4,7 +4,7 @@ import { storiesOf, action } from '@kadira/storybook'
 import AppVersionNotifier from '../src'
 
 storiesOf('AppVersionNotifier', module)
-  .addWithInfo('Basic', 'added Description', () => (
+  .add('Basic', () => (
     <AppVersionNotifier />
   ), { inline: true })
   .add('Basic', () => (
