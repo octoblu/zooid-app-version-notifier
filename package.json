@@ -1,6 +1,6 @@
 {
   "name": "zooid-app-notifier",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Button",
   "main": "dist/bundle.min.js",
   "scripts": {
@@ -54,7 +54,7 @@
   "dependencies": {
     "styled-components": "2.0.0-10",
     "superagent": "^3.5.2",
-    "superagent-no-cache": "^0.1.1"    
+    "superagent-no-cache": "^0.1.1"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.35.3",
