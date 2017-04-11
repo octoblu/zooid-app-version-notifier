@@ -1,14 +1,19 @@
 import styled from 'styled-components'
 
+
+
 export default styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
 
   padding: 1em;
   margin: 1em;
-  background-color: rgba(1, 1, 1, 0.6);
+  background-color: rgba(64, 64, 64, 0.9);
   color: white;
+
+  transition: transform 500ms ease;
+  transform: translateX(${props => props.show ? '0px' : '-1000px'});
 
   & a,
   & a:visited {

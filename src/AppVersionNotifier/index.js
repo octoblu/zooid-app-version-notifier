@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
 
 import {checkVersion} from '../helpers'
-import AppVersionNotifierBar from '../AppVersionNotifierBar'
+import Bar from '../Bar'
+import InnerBar from '../InnerBar'
 
 class AppVersionNotifier extends React.Component {
   static propTypes = {
@@ -47,23 +48,17 @@ class AppVersionNotifier extends React.Component {
   }
 
   render() {
-    if (!this.state.versionChanged) return null
+    const {autoRefresh} = this.props
+    const {versionChanged} = this.state
 
-    if (this.props.autoRefresh) {
+    if (autoRefresh && versionChanged) {
       location.reload(true)
-
-      return (
-        <AppVersionNotifierBar>
-          This app has been updated! Refreshing Now...
-        </AppVersionNotifierBar>
-      )
     }
 
     return (
-      <AppVersionNotifierBar>
-        A new version is available!
-        <a href="#" onClick={this.refresh}>Refresh</a>
-      </AppVersionNotifierBar>
+      <Bar show={versionChanged}>
+        <InnerBar autoRefresh={autoRefresh} onClickRefresh={this.refresh} />
+      </Bar>
     )
   }
 }

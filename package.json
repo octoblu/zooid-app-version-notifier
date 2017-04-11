@@ -1,6 +1,6 @@
 {
   "name": "zooid-app-version-notifier",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Button",
   "main": "dist/bundle.min.js",
   "scripts": {
@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.4",
+    "react-transition-group": "^1.1.1",
     "styled-components": "2.0.0-10",
     "superagent": "^3.5.2",
     "superagent-no-cache": "^0.1.1"
