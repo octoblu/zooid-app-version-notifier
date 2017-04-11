@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'citrixsans-regular';
+  src: url('https://cdn.octoblu.com/fonts/citrix-sans/citrixsans-regular.woff');
+}
+
+local .root {
+  font-family: 'citrixsans-regular', sans-serif; 
+}

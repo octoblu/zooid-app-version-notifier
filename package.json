@@ -1,6 +1,6 @@
 {
-  "name": "zooid-app-notifier",
-  "version": "0.0.1",
+  "name": "zooid-app-version-notifier",
+  "version": "1.0.0",
   "description": "Button",
   "main": "dist/bundle.min.js",
   "scripts": {
@@ -11,8 +11,9 @@
     "lint": "eslint src stories",
     "lint:fix": "eslint src stories --fix",
     "start": "start-storybook -p 9001",
-    "test": "nyc --require babel-core/register --require babel-polyfill mocha",
-    "test:watch": "mocha -w -R mocha-multi --reporter-options spec=-,mocha-osx-reporter=-"
+    "test": "echo 'no tests'",
+    "test:watch": "mocha -w -R mocha-multi --reporter-options spec=-,mocha-osx-reporter=-",
+    "mocha:json": "env NPM_ENV=test mocha --reporter json > coverage/mocha.json"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,7 @@
     ]
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "styled-components": "2.0.0-10",
     "superagent": "^3.5.2",
     "superagent-no-cache": "^0.1.1"
@@ -70,6 +72,10 @@
     "eslint-plugin-react": "^6.10.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "webpack": "^2.3.2"
+    "webpack": "^2.3.2",
+    "nyc": "^10.1.2",
+    "mocha-osx-reporter": "^0.1.2",
+    "mocha-multi": "^0.10.0",
+    "mocha": "^3.2.0"
   }
 }

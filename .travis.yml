@@ -1,26 +1,26 @@
-# language: node_js
-# node_js:
-# - '5'
-# before_deploy:
-# - npm run build
-# addons:
-#   code_climate:
-#     repo_token: 44eee1f4893752df2d19d19818f3b94ae3d4daff51d2f866c70f0deab98d8db6
-# before_script:
-# - npm install -g codeclimate-test-reporter
-# after_script:
-# - npm run coverage
-# - codeclimate-test-reporter < coverage/lcov.info
-# deploy:
-#   provider: npm
-#   email: serveradmin@octoblu.com
-#   skip_cleanup: true
-#   on:
-#     tags: true
-#   api_key:
-#     secure: 4o3FiUhuYMOo4ks1+pEygUrqlS1GrVPpiNrc8NyqLAs91dj2H1bN/Sor9tsGrZwSTqQNNPST1b6QZhTsyrI5WUoGx9Nn5+/ZQNa5ydiAekcUAFNkj4yttICEANG3W2/08lVv4eE8rnP7HsGT75KHHjIVbvcL93BqAXCHA6FY1auNdPGMeYXmIqVHZ//rq9driKRpN6xcn3m4JyJHX3d9w6PSY5JFOJ/QYRvnZSQykC7RJQQGnCgG31mrIGlqVKOgs6ni6MTKJ5TluJ08WwbeLWcJ0ampO3srgr9duzz96vkfdpJYwbMVXyMYSz3JJtiiRwoDFj6UgLM77uDB6v1tp8VGFglmQxUg78rF9rBauy1HS8sd1a7qPizc2yJRCWuzy7wbl4RviqLoL+qT+1+soRjQo5nuu9n/d8e0A3mYN9Si2rcKEuLSjWOXmSWqXHmhFpU0RZi3SOri/HCpq8+0ZnjC/+fRQm4cDhaYyX+XpIcDM97pLKD6DA5NRYPHsOdLOr64vdSoeLcXHVth+XDAPcONiuAtF5VfxmPAQB2eCSPs58mOwaDZ6bb6T7XHzCOV7DJ/UeKiFKVdjRlRbm2awe+2JyhSwsMpZGUH7BA1Sfwk8MI0Sbs18+QtHI9G3Q3oUUpw57VNRdM6yTY37rjxIugenKQ+kHkbrAm6L4gkMeg=
-# after_success:
-# - bash <(curl -s https://codecov.io/bash)
-# branches:
-#   only:
-#   - "/^v[0-9]/"
+language: node_js
+node_js:
+  - '5'
+before_deploy:
+  - npm run build
+deploy:
+  provider: npm
+  email: serveradmin@octoblu.com
+  skip_cleanup: true
+  api_key:
+    secure: >-
+      AdljWNlFrh+UabSkW/AeHTDXhL3YMEXtey3XrHgiIrGP97ud4SvhYLqJv08Zap9asnifVbZCPJoEmkq2ZOZGoZSbNWmr3MiHmCVeW2KtgBeSayRRbW4fSXxTitZNESrH8oYF4vDbWvvRePEJYi3JfyuX6fLCrPoFeWO4VeyfzLB6LWRhGKRYHQNxnVKT14HDhlO9ydqOJRTureiy1FC7ViN2Nfu/y5UbIn8Sncq42QSaM/SvPxHmQxNZ2gMD06XxaveAW+ufQmLMSUpxfktopbXbx1aps/URWsMpA0MnYSkTTHBjG+E+VFsDBx168NxOYahu07meIGBno2k79IVj5AIF832axKmSkv/K7xzGzsr2Vvb1mca30DHt2IcHQKe+pBfiuDZQd33BpiSuvrWIFFPPAv32MYO4rhnmBoR9Dx6zNvm4lEunC0z7zd/F2c2LiWc4hboJzIXVZ8kp3+1IHDu++29UJAxOjqrUnhjRNn4Cnd4iagYs2tZYJ6nwaa7ykPABTfiDrFZZRSa41UCNFTv6w/8zY30K2/cObjcYSdDf25EY+MlXpNSX9uGzg5zb4t4vDtgdRMdOrJGgovpvhwI/wlLKxI1pK6Pwabt5/CrIZsj18U/QLj6Q5s6BJd73KOsoYErrevM9FmdEx8Z3U8Xim0VexYWlZ7qFvfe6cAM=
+  'on':
+    tags: true
+    repo: octoblu/zooid-app-version-notifier
+after_success:
+  - npm run coverage
+  - 'npm run mocha:json'
+  - 'bash <(curl -s https://codecov.io/bash)'
+  - 'bash <(curl -s https://codecov.octoblu.com/bash)'
+branches:
+  only:
+    - '/^v[0-9]/'
+notifications:
+  webhooks:
+    - 'https://beekeeper.octoblu.com/webhooks/travis:ci'

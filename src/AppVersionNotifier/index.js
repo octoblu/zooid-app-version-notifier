@@ -1,18 +1,7 @@
 import React, { PropTypes } from 'react'
-import styled from 'styled-components'
 
 import {checkVersion} from '../helpers'
-
-const AppVersionNotifierBar = styled.div`
-  width: 100%;
-  height: 4em;
-  background-color: rgba(1, 1, 1, 0.5);
-
-  & a {
-    color: white;
-    text-decoration: none;
-  }
-`
+import AppVersionNotifierBar from '../AppVersionNotifierBar'
 
 class AppVersionNotifier extends React.Component {
   static propTypes = {
@@ -42,7 +31,6 @@ class AppVersionNotifier extends React.Component {
   }
 
   _pollVersion = () => {
-    console.log('state', this.state)
     const {checkVersion, initialVersion} = this.props
 
     checkVersion((error, version) => {
@@ -52,28 +40,6 @@ class AppVersionNotifier extends React.Component {
         this.setState({versionChanged: true})
       }
     })
-  //   const {protocol, hostname, port} = window.location
-  //
-  //   request
-  //     .get(url.format({protocol, hostname, port, pathname: '/version'}))
-  //     .use(nocache)
-  //     .end((error, response) => {
-  //       if (error) return
-  //
-  //       const result = JSON.parse(response.text)
-  //
-  //       if (!this.state.lastVersion) {
-  //         return this.setState({lastVersion: result.version})
-  //       }
-  //
-  //       if(this.state.lastVersion === result.version) return
-  //
-  //       this.setState({ versionChanged: true })
-  //
-  //       if (this.props.autoRefresh) {
-  //         this.refresh()
-  //       }
-  //     })
   }
 
   refresh = () => {
@@ -81,18 +47,25 @@ class AppVersionNotifier extends React.Component {
   }
 
   render() {
+    if (!this.state.versionChanged) return null
 
-      if(!this.state.versionChanged || this.props.autoRefresh) {
-        return null
-      }
+    if (this.props.autoRefresh) {
+      location.reload(true)
 
       return (
         <AppVersionNotifierBar>
-          This app has been updated!
-          <a href="#" onClick={this.refresh}>Refresh Now</a> to upgrade.
+          This app has been updated! Refreshing Now...
         </AppVersionNotifierBar>
       )
     }
+
+    return (
+      <AppVersionNotifierBar>
+        A new version is available!
+        <a href="#" onClick={this.refresh}>Refresh</a>
+      </AppVersionNotifierBar>
+    )
+  }
 }
 
 export default AppVersionNotifier
