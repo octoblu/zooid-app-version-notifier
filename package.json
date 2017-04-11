@@ -1,6 +1,6 @@
 {
   "name": "zooid-app-version-notifier",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Button",
   "main": "dist/bundle.min.js",
   "scripts": {
@@ -44,7 +44,8 @@
   "babel": {
     "presets": [
       "latest",
-      "react"
+      "react",
+      "stage-0"
     ],
     "plugins": [
       [
@@ -66,16 +67,17 @@
     "babel-plugin-styled-components": "^1.1.1",
     "babel-preset-latest": "^6.24.0",
     "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1",
     "eslint": "^3.18.0",
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-react": "^6.10.3",
+    "mocha": "^3.2.0",
+    "mocha-multi": "^0.10.0",
+    "mocha-osx-reporter": "^0.1.2",
+    "nyc": "^10.1.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "webpack": "^2.3.2",
-    "nyc": "^10.1.2",
-    "mocha-osx-reporter": "^0.1.2",
-    "mocha-multi": "^0.10.0",
-    "mocha": "^3.2.0"
+    "webpack": "^2.3.2"
   }
 }
