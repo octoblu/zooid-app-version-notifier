@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
-import request from 'superagent'
-import nocache from 'superagent-no-cache'
+
+import {checkVersion} from '../helpers'
 
 const AppVersionNotifierBar = styled.div`
   width: 100%;
@@ -16,13 +16,16 @@ const AppVersionNotifierBar = styled.div`
 
 class AppVersionNotifier extends React.Component {
   static propTypes = {
-    forceRefresh: PropTypes.bool,
+    autoRefresh: PropTypes.bool,
+    checkVersion: PropTypes.func,
+    initialVersion: PropTypes.string.isRequired,
     interval: PropTypes.number,
   }
 
   static defaultProps = {
-    forceRefresh: false,
+    autoRefresh: false,
     interval: 60 * 1000,
+    checkVersion: checkVersion,
   }
 
   state = {
@@ -30,34 +33,47 @@ class AppVersionNotifier extends React.Component {
   }
 
   componentDidMount() {
-    this.checkInterval = setInterval(this._checkVersion, this.props.interval)
+    this._checkInterval = setInterval(this._pollVersion, this.props.interval)
+    this._pollVersion()
   }
 
   componentWillUnMount() {
-    clearInterval(this.checkInterval)
+    clearInterval(this._checkInterval)
   }
 
-  _checkVersion = () => {
-    request
-      .get(window.location.origin + '/version')
-      .use(nocache)
-      .end((error, response) => {
-        if (error) return
+  _pollVersion = () => {
+    console.log('state', this.state)
+    const {checkVersion, initialVersion} = this.props
 
-        const result = JSON.parse(response.text)
+    checkVersion((error, version) => {
+      if (error) return
 
-        if (!this.state.lastVersion) {
-          return this.setState({lastVersion: result.version})
-        }
-
-        if(this.state.lastVersion === result.version) return
-
-        this.setState({ versionChanged: true })
-
-        if (this.props.forceRefresh) {
-          this.refresh()
-        }
-      })
+      if (initialVersion !== version) {
+        this.setState({versionChanged: true})
+      }
+    })
+  //   const {protocol, hostname, port} = window.location
+  //
+  //   request
+  //     .get(url.format({protocol, hostname, port, pathname: '/version'}))
+  //     .use(nocache)
+  //     .end((error, response) => {
+  //       if (error) return
+  //
+  //       const result = JSON.parse(response.text)
+  //
+  //       if (!this.state.lastVersion) {
+  //         return this.setState({lastVersion: result.version})
+  //       }
+  //
+  //       if(this.state.lastVersion === result.version) return
+  //
+  //       this.setState({ versionChanged: true })
+  //
+  //       if (this.props.autoRefresh) {
+  //         this.refresh()
+  //       }
+  //     })
   }
 
   refresh = () => {
@@ -66,7 +82,7 @@ class AppVersionNotifier extends React.Component {
 
   render() {
 
-      if(!this.state.versionChanged || this.props.forceRefresh) {
+      if(!this.state.versionChanged || this.props.autoRefresh) {
         return null
       }
 
