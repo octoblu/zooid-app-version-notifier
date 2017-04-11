@@ -1,6 +1,6 @@
 {
   "name": "zooid-app-version-notifier",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Button",
   "main": "dist/bundle.min.js",
   "scripts": {
