@@ -4,6 +4,9 @@ import {checkVersion} from '../helpers'
 import Bar from '../Bar'
 import InnerBar from '../InnerBar'
 
+import Debug from 'debug'
+const debug = Debug('zooid-app-version-notifier:AppVersionNotifier')
+
 class AppVersionNotifier extends React.Component {
   static propTypes = {
     autoRefresh: PropTypes.bool,
@@ -35,6 +38,7 @@ class AppVersionNotifier extends React.Component {
     const {checkVersion, initialVersion} = this.props
 
     checkVersion((error, version) => {
+      debug('checkVersion', error, version, initialVersion)
       if (error) return
 
       if (initialVersion !== version) {
@@ -50,6 +54,8 @@ class AppVersionNotifier extends React.Component {
   render() {
     const {autoRefresh} = this.props
     const {versionChanged} = this.state
+
+    debug('render', this.state.versionChanged)
 
     if (autoRefresh && versionChanged) {
       location.reload(true)

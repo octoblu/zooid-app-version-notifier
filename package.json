@@ -1,10 +1,10 @@
 {
   "name": "zooid-app-version-notifier",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Button",
   "main": "dist/bundle.min.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -p",
     "build:storybook": "build-storybook -o storybook-build",
     "clean": "rimraf lib dist coverage",
     "coverage": "nyc report --reporter=lcov",
@@ -54,6 +54,7 @@
     ]
   },
   "dependencies": {
+    "debug": "^2.6.3",
     "lodash": "^4.17.4",
     "react-transition-group": "^1.1.1",
     "styled-components": "2.0.0-10",
