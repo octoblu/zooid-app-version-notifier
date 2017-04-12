@@ -13,14 +13,14 @@ export function InnerBar(props) {
   if (props.autoRefresh) {
     return (
       <div>
-        This app has been updated! Refreshing Now...
+        <p>This app has been updated! Refreshing Now...</p>
       </div>
     )
   }
 
   return (
     <div>
-      A new version is available!
+      <span>A new version is available!</span>
       <a href="#" onClick={props.onClickRefresh}>Refresh</a>
     </div>
   )

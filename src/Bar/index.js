@@ -7,13 +7,30 @@ export default styled.div`
   bottom: 0;
   left: 0;
 
-  padding: 1em;
-  margin: 1em;
   background-color: rgba(64, 64, 64, 0.9);
   color: white;
 
   transition: transform 500ms ease;
-  transform: translateX(${props => props.show ? '0px' : '-1000px'});
+
+  @media (min-width: 500px) {
+    transform: translateX(${props => props.show ? '0px' : '-1000px'});
+    margin: 1em;
+  }
+  @media (max-width: 499px) {
+    transform: translateY(${props => props.show ? '0px' : '300px'});
+    width: 100%;
+    margin: 0;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  div {
+    padding: 1em;
+  }
 
   & a,
   & a:visited {
