@@ -1,11 +1,11 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from "react"
 
-import {checkVersion} from '../helpers'
-import Bar from '../Bar'
-import InnerBar from '../InnerBar'
+import { checkVersion } from "../helpers"
+import Bar from "../Bar"
+import InnerBar from "../InnerBar"
 
-import Debug from 'debug'
-const debug = Debug('zooid-app-version-notifier:AppVersionNotifier')
+import Debug from "debug"
+const debug = Debug("zooid-app-version-notifier:AppVersionNotifier")
 
 class AppVersionNotifier extends React.Component {
   static propTypes = {
@@ -35,14 +35,14 @@ class AppVersionNotifier extends React.Component {
   }
 
   _pollVersion = () => {
-    const {checkVersion, initialVersion} = this.props
+    const { checkVersion, initialVersion } = this.props
 
     checkVersion((error, version) => {
-      debug('checkVersion', error, version, initialVersion)
+      debug("checkVersion", error, version, initialVersion)
       if (error) return
 
       if (initialVersion !== version) {
-        this.setState({versionChanged: true})
+        this.setState({ versionChanged: true })
       }
     })
   }
@@ -52,10 +52,10 @@ class AppVersionNotifier extends React.Component {
   }
 
   render() {
-    const {autoRefresh} = this.props
-    const {versionChanged} = this.state
+    const { autoRefresh } = this.props
+    const { versionChanged } = this.state
 
-    debug('render', this.state.versionChanged)
+    debug("render", this.state.versionChanged)
 
     if (autoRefresh && versionChanged) {
       location.reload(true)

@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled from "emotion/react"
 
 export default styled.div`
-  @font-face {
+  @fontFace {
     font-family: 'citrixsans-regular';
     src: url('https://cdn.octoblu.com/fonts/citrix-sans/citrixsans-regular.woff');
   }
@@ -12,10 +12,4 @@ export default styled.div`
   height: 3000px;
   background-image: url('http://blog.ninapaley.com/wp-content/uploads/2013/05/tiles_hex_progressive5BW.gif');
   background-repeat: repeat;
-
-  // filter: invert(100%);
-
-  // div {
-  //   filter: invert(100%);
-  // }
 `

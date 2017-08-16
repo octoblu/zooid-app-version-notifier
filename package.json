@@ -1,6 +1,6 @@
 {
   "name": "zooid-app-version-notifier",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Button",
   "main": "dist/bundle.min.js",
   "scripts": {
@@ -49,24 +49,24 @@
     ],
     "plugins": [
       [
-        "styled-components"
+        "emotion/babel"
       ]
     ]
   },
   "dependencies": {
+    "@storybook/react": "^3.2.4",
     "debug": "^2.6.3",
+    "emotion": "^7.0.13",
     "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
     "react-transition-group": "^1.1.1",
-    "styled-components": "2.0.0-10",
     "superagent": "^3.5.2",
     "superagent-no-cache": "^0.1.1"
   },
   "devDependencies": {
-    "@kadira/storybook": "^2.35.3",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.1",
     "babel-loader": "^6.4.1",
-    "babel-plugin-styled-components": "^1.1.1",
     "babel-preset-latest": "^6.24.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.24.1",

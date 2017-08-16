@@ -1,8 +1,6 @@
-import styled from 'styled-components'
+import styled from "emotion/react"
 
-
-
-export default styled.div`
+const Bar = styled("div")`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -13,11 +11,11 @@ export default styled.div`
   transition: transform 500ms ease;
 
   @media (min-width: 500px) {
-    transform: translateX(${props => props.show ? '0px' : '-1000px'});
+    transform: translateX(${props => (props.show ? "0px" : "-1000px")});
     margin: 1em;
   }
   @media (max-width: 499px) {
-    transform: translateY(${props => props.show ? '0px' : '300px'});
+    transform: translateY(${props => (props.show ? "0px" : "300px")});
     width: 100%;
     margin: 0;
 
@@ -28,7 +26,7 @@ export default styled.div`
     }
   }
 
-  div {
+  & > div {
     padding: 1em;
   }
 
@@ -42,6 +40,8 @@ export default styled.div`
 
   & a:hover,
   & a:focus {
-    color: rgb(139, 201, 255)
+    color: rgb(139, 201, 255);
   }
 `
+
+export default Bar

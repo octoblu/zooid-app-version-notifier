@@ -1,13 +1,12 @@
-import React, {PropTypes} from 'react'
+import React from "react"
+import PropTypes from "prop-types"
 
 var propTypes = {
   autoRefresh: PropTypes.bool.isRequired,
   onClickRefresh: PropTypes.func.isRequired,
 }
 
-var defaultProps = {
-
-}
+var defaultProps = {}
 
 export function InnerBar(props) {
   if (props.autoRefresh) {
@@ -21,12 +20,14 @@ export function InnerBar(props) {
   return (
     <div>
       <span>A new version is available!</span>
-      <a href="#" onClick={props.onClickRefresh}>Refresh</a>
+      <a href="#" onClick={props.onClickRefresh}>
+        Refresh
+      </a>
     </div>
   )
 }
 
-InnerBar.propTypes    = propTypes
+InnerBar.propTypes = propTypes
 InnerBar.defaultProps = defaultProps
 
 export default InnerBar
